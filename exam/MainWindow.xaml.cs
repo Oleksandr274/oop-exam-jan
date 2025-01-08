@@ -122,5 +122,41 @@ namespace exam //github: https://github.com/Oleksandr274/oop-exam-jan
                 lsbxTickets.ItemsSource = selectedEvent.Tickets;
             }
         }
+
+
+
+        private void btnBook_Click(object sender, RoutedEventArgs e)
+        {
+            Ticket selectedTicket = lsbxTickets.SelectedItem as Ticket;
+            if (selectedTicket != null)
+            {
+                if (int.TryParse(txbxNumOfTickets.Text, out int amount))
+                {
+                    int numOfTickets = int.Parse(txbxNumOfTickets.Text);
+                    if(numOfTickets <= selectedTicket.AvailableTickets)
+                    {
+                        selectedTicket.AvailableTickets -= numOfTickets;
+                        Event selectedEventForTicket = lsbxEvents.SelectedItem as Event;
+
+
+                        MessageBox.Show($"You have succesfuly bought {numOfTickets} tickets '{selectedTicket.Name}'" +
+                            $" for event '{selectedEventForTicket.Name}'");
+
+                        lsbxTickets.ItemsSource = null;
+                        txbxNumOfTickets.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Unfortunately," +
+                            $" we don't have reqired amount of tikects '{selectedTicket.Name}' for you");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid amount");
+                    return;
+                }
+            }
+        }
     }
 }
