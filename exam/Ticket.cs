@@ -12,5 +12,12 @@ namespace exam
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int AvailableTickets { get; set; }
+
+
+        //methods
+        public override string ToString()
+        {
+            return $"{Name} - {Price} [AVAILABLE -{AvailableTickets}]";
+        }
     }
 }

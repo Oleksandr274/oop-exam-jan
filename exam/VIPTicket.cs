@@ -11,5 +11,12 @@ namespace exam
         //properties
         public string AdditionalExtras { get; set; }
         public decimal AdditionalCost { get; set; }
+
+
+        //methods
+        public override string ToString()
+        {
+            return $"{Name} - {Price} ({AdditionalExtras}) [AVAILABLE -{AvailableTickets}]";
+        }
     }
 }

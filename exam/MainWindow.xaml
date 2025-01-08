@@ -11,8 +11,8 @@
         <Label  Content="Events" HorizontalAlignment="Left" Margin="124,43,0,0" VerticalAlignment="Top"/>
         <Label Content="Tickets" HorizontalAlignment="Left" Margin="486,43,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txbxSearch" HorizontalAlignment="Left" Margin="249,47,0,0" TextWrapping="Wrap" Text="Search" VerticalAlignment="Top" Width="120"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="40,104,473,83"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="377,104,15,83"/>
+        <ListBox x:Name="lsbxEvents" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="40,104,473,83" SelectionChanged="lsbxEvents_SelectionChanged"/>
+        <ListBox x:Name="lsbxTickets" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="377,104,15,83"/>
         <Label Content="Number of Tickets" HorizontalAlignment="Left" Margin="390,380,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.075,0.695"/>
         <TextBox  HorizontalAlignment="Left" Margin="521,384,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnBook"  Content="Book" HorizontalAlignment="Left" Height="22" Margin="672,384,0,0" VerticalAlignment="Top" Width="42"/>

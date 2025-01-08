@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace exam
 {
@@ -13,14 +14,19 @@ namespace exam
         //properties
         public string Name { get; set; }
         public DateTime EventDate { get; set; }
-        public List<Ticket> Tickets { get; set; }
+        public List<Ticket> Tickets = new List<Ticket>();
         public EventType TypeOfEvent { get; set; }
 
 
 
         //methods
 
-        
+        public override string ToString()
+        {
+            return $"{Name} - {EventDate.ToShortDateString()}";
+        }
+
+
         public int CompareTo(Event? other)
         {
             return this.EventDate.CompareTo(other.EventDate);
