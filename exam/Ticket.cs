@@ -8,6 +8,7 @@ namespace exam
 {
     public class Ticket
     {
+        //properties
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int AvailableTickets { get; set; }
