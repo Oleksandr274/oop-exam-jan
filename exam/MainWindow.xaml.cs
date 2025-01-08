@@ -18,42 +18,15 @@ namespace exam //github: https://github.com/Oleksandr274/oop-exam-jan
     {
         List<Event> events = new List<Event>();
 
-
+        // method to create tickets
         private List<Ticket> CreateTickets()
         {
             List<Ticket> allTickets = new List<Ticket>();
 
-            Ticket ticket1 = new Ticket()
-            {
-                Name = "Early Bird",
-                Price = 100m,
-                AvailableTickets = 100
-            };
-
-            Ticket ticket2 = new Ticket()
-            {
-                Name = "Platinium",
-                Price = 150m,
-                AvailableTickets = 100
-            };
-
-            VIPTicket VIPticket1 = new VIPTicket()
-            {
-                Name = "Ticket and Hotel Package",
-                Price = 150m,
-                AdditionalCost = 100m,
-                AdditionalExtras = "4* hotel",
-                AvailableTickets = 100
-            };
-
-            VIPTicket VIPticket2 = new VIPTicket()
-            {
-                Name = "Weekend Ticket",
-                Price = 200m,
-                AdditionalCost = 100m,
-                AdditionalExtras = "with camping",
-                AvailableTickets = 100
-            };
+            Ticket ticket1 = new Ticket("Early Bird", 100m, 100);
+            Ticket ticket2 = new Ticket("Platinium", 150m, 100);
+            VIPTicket VIPticket1 = new VIPTicket("Ticket and Hotel Package", 150m, 100, "4* hotel", 100m);
+            VIPTicket VIPticket2 = new VIPTicket("Weekend Ticket", 200m, 100, "with camping", 100m);
 
             allTickets.Add(ticket1);
             allTickets.Add(ticket2);
@@ -63,6 +36,7 @@ namespace exam //github: https://github.com/Oleksandr274/oop-exam-jan
             return allTickets;
         }
 
+        // method to create tickets
         private List<Event> CreateEvents()
         { 
             List<Event> events = new List<Event>();
@@ -97,18 +71,19 @@ namespace exam //github: https://github.com/Oleksandr274/oop-exam-jan
 
     }
 
-    private List<Event> FilterEvents(string searchTerm)
-    {
-        List<Event> filteredList = new List<Event>();
-
-        foreach (Event ev in events)
+        // method to filter events
+        private List<Event> FilterEvents(string searchTerm)
         {
-            if (ev.Name.ToLower().Contains(searchTerm.ToLower()))
-                filteredList.Add(ev);
-        }
+            List<Event> filteredList = new List<Event>();
 
-        return filteredList;
-    }
+            foreach (Event ev in events)
+            {
+                if (ev.Name.ToLower().Contains(searchTerm.ToLower()))
+                    filteredList.Add(ev);
+            }
+
+            return filteredList;
+        }
 
         public MainWindow()
         {
@@ -128,6 +103,7 @@ namespace exam //github: https://github.com/Oleksandr274/oop-exam-jan
 
         private void lsbxEvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // diplay tickets on event selection
             Event selectedEvent = lsbxEvents.SelectedItem as Event;
             if (selectedEvent != null)
             {
@@ -138,32 +114,43 @@ namespace exam //github: https://github.com/Oleksandr274/oop-exam-jan
 
         private void btnBook_Click(object sender, RoutedEventArgs e)
         {
+            // get selected ticket
             Ticket selectedTicket = lsbxTickets.SelectedItem as Ticket;
+
+            //check if it is not null
             if (selectedTicket != null)
             {
+                //check in entered number of tickets is an integer
                 if (int.TryParse(txbxNumOfTickets.Text, out int amount))
                 {
                     int numOfTickets = int.Parse(txbxNumOfTickets.Text);
-                    if(numOfTickets <= selectedTicket.AvailableTickets)
+
+                    // check if entered number of tickets is less than available number of tickets
+                    if (numOfTickets <= selectedTicket.AvailableTickets)
                     {
+
                         selectedTicket.AvailableTickets -= numOfTickets;
                         Event selectedEventForTicket = lsbxEvents.SelectedItem as Event;
 
 
-                        MessageBox.Show($"You have succesfuly bought {numOfTickets} tickets '{selectedTicket.Name}'" +
+                        // display msg of succesful purchase
+                        MessageBox.Show($"You have succesfuly purchased {numOfTickets} tickets '{selectedTicket.Name}'" +
                             $" for event '{selectedEventForTicket.Name}'");
 
+                        //reset tickets list box and text of number to tickets
                         lsbxTickets.ItemsSource = null;
                         txbxNumOfTickets.Text = "";
                     }
                     else
                     {
+                        // display error msg statimg lack of tickets available
                         MessageBox.Show($"Unfortunately," +
                             $" we don't have reqired amount of tikects '{selectedTicket.Name}' for you");
                     }
                 }
                 else
                 {
+                    //if user enters invalid onteger -  display error msg
                     MessageBox.Show("Not a valid amount");
                     return;
                 }

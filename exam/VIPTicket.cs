@@ -12,6 +12,13 @@ namespace exam
         public string AdditionalExtras { get; set; }
         public decimal AdditionalCost { get; set; }
 
+        //constructors
+        public VIPTicket(string name, decimal price, int availableTickets, string additionalExtras, decimal additionalCost) : base(name, price, availableTickets)
+        {
+            AdditionalExtras = additionalExtras;
+            AdditionalCost = additionalCost;
+        }
+
 
         //methods
         public override string ToString()
