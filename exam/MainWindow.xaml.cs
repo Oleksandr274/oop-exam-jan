@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace exam
+namespace exam //github: https://github.com/Oleksandr274/oop-exam-jan
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -19,6 +19,11 @@ namespace exam
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
