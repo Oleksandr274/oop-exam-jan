@@ -97,6 +97,19 @@ namespace exam //github: https://github.com/Oleksandr274/oop-exam-jan
 
     }
 
+    private List<Event> FilterEvents(string searchTerm)
+    {
+        List<Event> filteredList = new List<Event>();
+
+        foreach (Event ev in events)
+        {
+            if (ev.Name.ToLower().Contains(searchTerm.ToLower()))
+                filteredList.Add(ev);
+        }
+
+        return filteredList;
+    }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -122,8 +135,6 @@ namespace exam //github: https://github.com/Oleksandr274/oop-exam-jan
                 lsbxTickets.ItemsSource = selectedEvent.Tickets;
             }
         }
-
-
 
         private void btnBook_Click(object sender, RoutedEventArgs e)
         {
@@ -158,5 +169,27 @@ namespace exam //github: https://github.com/Oleksandr274/oop-exam-jan
                 }
             }
         }
+
+        private void txbxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(txbxSearch.Text != "")
+            {
+                List<Event> filteredEvents = FilterEvents(txbxSearch.Text);
+                if(filteredEvents.Count > 0)
+                {
+                    lsbxEvents.ItemsSource = null;
+                    lsbxEvents.ItemsSource = filteredEvents;
+                }
+
+            }
+            else
+            {
+                lsbxEvents.ItemsSource = null;
+                lsbxEvents.ItemsSource = events;
+            }
+
+        }
+
+
     }
 }

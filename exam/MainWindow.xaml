@@ -8,9 +8,9 @@
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
 
-        <Label  Content="Events" HorizontalAlignment="Left" Margin="124,43,0,0" VerticalAlignment="Top"/>
-        <Label Content="Tickets" HorizontalAlignment="Left" Margin="486,43,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txbxSearch" HorizontalAlignment="Left" Margin="249,47,0,0" TextWrapping="Wrap" Text="Search" VerticalAlignment="Top" Width="120"/>
+        <Label  Content="Events" HorizontalAlignment="Left" Margin="57,43,0,0" VerticalAlignment="Top"/>
+        <Label Content="Tickets" HorizontalAlignment="Left" Margin="420,43,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txbxSearch" HorizontalAlignment="Left" Margin="151,47,0,0" TextWrapping="Wrap" Text="Search" VerticalAlignment="Top" Width="120" TextChanged="txbxSearch_TextChanged"/>
         <ListBox x:Name="lsbxEvents" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="40,104,473,83" SelectionChanged="lsbxEvents_SelectionChanged"/>
         <ListBox x:Name="lsbxTickets" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="377,104,15,83"/>
         <Label Content="Number of Tickets" HorizontalAlignment="Left" Margin="390,380,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.075,0.695"/>
